@@ -4,11 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link href="style.css" rel="stylesheet">
     <title>Code Quiz</title>
 </head>
 
 <body>
+    <div class="container">
+        <ul>
+            <li><a id="highScoresHeader">High Scores</a></li>
+            <li style="float:right" id="timer">75</li>
+        </ul>
+    </div>
     <div class="container">
         <div id="question-container" class="hide">
             <div id="question">Question</div>
@@ -23,8 +31,23 @@
             <button id="start-btn" class="start-btn btn">Start</button>
             <button id="next-btn" class="next-btn btn hide">Next</button>
         </div>
+        <div id="initials-input" class="hide">
+            <form>
+                <label for="initials">Initals</label><br>
+                <input type="text" id="initials" name="fname"><br>
+                <input type="submit" value="Submit" id="submitBtn">
+            </form>
+        </div>
+        <div id="high-scores" class="hide">
+            <h1>High Scores</h1>
+            <p id="scores-list"></p>
+            <button class="btn">Restart</button>
+            <button class="btn">Clear High Scores</button>
+        </div>
+    </div>
     </div>
 
+    <script src="script.js"></script>
 </body>
 
 </html>
