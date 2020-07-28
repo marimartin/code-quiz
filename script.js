@@ -90,6 +90,13 @@ function restartGame() {
     startButton.classList.remove('hide')
 }
 
+// Clear High Scores
+clearButton.addEventListener('click', clearScores)
+
+function clearScores() {
+    localStorage.clear();
+}
+
 // Question Functions
 function showQuestion(question) {
     questionEl.innerText = question.question
@@ -115,7 +122,15 @@ function resetState() {
 
 function selectAnswer(e) {
     const selectedButton = e.target
-    const correct = selectedButton.dataset.correct
+    const correct = selectedButton.getAttribute("data-correct");
+    if (correct === "true") {
+        correctIncorrectEl.textContent = "correct";
+        // alert("that's right")
+    }
+    else {
+        correctIncorrectEl.textContent = "incorrect";
+        // alert("that's incorrect")
+    }
     setStatusClass(document.body, correct)
     Array.from(answerButtonsEl.children).forEach(button => {
         setStatusClass(button, button.dataset.corret)
@@ -131,11 +146,13 @@ function selectAnswer(e) {
 }
 
 function nextQuestion() {
-    resetState()
-    showQuestion(randomQuestions[currentQuestionIndex])
+    setTimeout(() => {
+        correctIncorrectEl.textContent = "";
+        resetState()
+        showQuestion(randomQuestions[currentQuestionIndex])
+    }, 1000)
 }
 
-// Correct/Incorrect Message
 function setStatusClass(element, correct) {
     clearStatusClass(element)
     if (correct) {
@@ -161,6 +178,7 @@ const questions = [
             { text: "All of the above", correct: true }
         ]
     },
+
     {
         question: 'String values must be enclosed within ____ when being assigned to variable.',
         answers: [
