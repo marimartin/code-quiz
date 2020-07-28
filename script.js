@@ -1,45 +1,36 @@
+// Buttons
 const startButton = document.getElementById("start-btn")
-const nextButton = document.getElementById("next-btn")
+const submitButton = document.getElementById("submitBtn")
+const restartButton = document.getElementById("restart-btn")
+const clearButton = document.getElementById("clear-btn")
+
+// Elements to hide and/or display
 const questionContainerEl = document.getElementById("question-container")
 const questionEl = document.getElementById('question')
 const answerButtonsEl = document.getElementById('answer-buttons')
+const correctIncorrectEl = document.getElementById("right-wrong")
+
+// Score Recording/Displaying Elements
 const initialsInputEl = document.getElementById('initials-input')
 const userInitials = document.getElementById('initials')
 const timerEl = document.getElementById("timer")
-const submitButton = document.getElementById("submitBtn")
-const highScoreHeaderEl = document.getElementById("highScoresHeader")
+const highScoreHeaderEl = document.getElementById("high-scores-header")
+const notScoresEl = document.getElementById("not-scores")
+const highScoresEl = document.getElementById('high-scores')
 
 
 let randomQuestions, currentQuestionIndex
 
-var seconds = 75;
-var timerInterval
-
-startButton.addEventListener('click', startGame)
-
-nextButton.addEventListener('click', () => {
-    currentQuestionIndex++
-    nextQuestion()
-})
-
-submitButton.addEventListener('click', function (event) {
-    event.preventDefault()
-    var initials = userInitials.value
-    console.log(initials)
-    var initialsArray = JSON.parse(localStorage.getItem("initials")) || []
-    var scoreArray = [
-        initials, seconds
-    ]
-    initialsArray.push(scoreArray)
-    localStorage.setItem("initials", JSON.stringify(initialsArray))
-})
-
+// High Score in Header
 highScoreHeaderEl.addEventListener('click', showScores)
 
 function showScores() {
-
+    notScoresEl.classList.add('hide')
+    highScoresEl.classList.remove('hide')
 }
 
+// Start Game
+startButton.addEventListener('click', startGame)
 
 function startGame() {
     startTimer()
@@ -51,6 +42,11 @@ function startGame() {
     nextQuestion()
 }
 
+// Timer Variables
+var seconds = 75;
+var timerInterval
+
+// Timer Functions
 function startTimer() {
     timeInterval = setInterval(function () {
         seconds--
@@ -69,19 +65,32 @@ function endTimer() {
     // opens score input form
 }
 
+// Submit Score
+submitButton.addEventListener('click', function (event) {
+    event.preventDefault()
+    var initials = userInitials.value
+    console.log(initials)
+    var initialsArray = JSON.parse(localStorage.getItem("initials")) || []
+    var scoreArray = [
+        initials, seconds
+    ]
+    initialsArray.push(scoreArray)
+    localStorage.setItem("initials", JSON.stringify(initialsArray))
+})
+
 function submitScore() {
     localStorage.setItem()
 }
-// submit button adds score and initials to high scores list
-// displays high scores list
-// hides score input form
-// saves to local storage until user removes it with a remove button
 
-function nextQuestion() {
-    resetState()
-    showQuestion(randomQuestions[currentQuestionIndex])
+// Restart Game
+restartButton.addEventListener('click', restartGame)
+
+function restartGame() {
+    highScoresEl.classList.add('hide')
+    startButton.classList.remove('hide')
 }
 
+// Question Functions
 function showQuestion(question) {
     questionEl.innerText = question.question
     question.answers.forEach(answer => {
@@ -98,7 +107,6 @@ function showQuestion(question) {
 
 function resetState() {
     clearStatusClass(document.body)
-    nextButton.classList.add('hide')
     while (answerButtonsEl.firstChild) {
         answerButtonsEl.removeChild
             (answerButtonsEl.firstChild)
@@ -113,7 +121,8 @@ function selectAnswer(e) {
         setStatusClass(button, button.dataset.corret)
     })
     if (randomQuestions.length > currentQuestionIndex + 1) {
-        nextButton.classList.remove("hide")
+        currentQuestionIndex++
+        nextQuestion()
     } else {
         endTimer()
         questionContainerEl.classList.add('hide')
@@ -121,12 +130,18 @@ function selectAnswer(e) {
     }
 }
 
+function nextQuestion() {
+    resetState()
+    showQuestion(randomQuestions[currentQuestionIndex])
+}
+
+// Correct/Incorrect Message
 function setStatusClass(element, correct) {
     clearStatusClass(element)
     if (correct) {
         element.classList.add("correct")
     } else {
-        element.classList.add("wrong)")
+        element.classList.add("wrong")
     }
 }
 
@@ -135,6 +150,7 @@ function clearStatusClass(element) {
     element.classList.remove("wrong")
 }
 
+// Questions
 const questions = [
     {
         question: 'Arrays in JavaScript can be used to store ____.',

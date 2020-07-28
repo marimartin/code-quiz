@@ -13,38 +13,50 @@
 <body>
     <div class="container">
         <ul>
-            <li><a id="highScoresHeader">High Scores</a></li>
+            <li><a id="high-scores-header">High Scores</a></li>
             <li style="float:right" id="timer">75</li>
         </ul>
     </div>
-    <div class="container">
-        <div id="question-container" class="hide">
-            <div id="question">Question</div>
-            <div id="answer-buttons" class="btn-grid">
-                <button class="btn">Answer 1</button>
-                <button class="btn">Answer 2</button>
-                <button class="btn">Answer 3</button>
-                <button class="btn">Answer 4</button>
+
+    <div id="not-scores">
+
+        <div class="container">
+            <div id="question-container" class="hide">
+                <div id="question">Question</div>
+                <div id="answer-buttons" class="btn-grid">
+                    <button class="btn">Answer 1</button>
+                    <button class="btn">Answer 2</button>
+                    <button class="btn">Answer 3</button>
+                    <button class="btn">Answer 4</button>
+                </div>
+            </div>
+            <div id="right-wrong">
+                <p></p>
+            </div>
+            <div class="controls">
+                <button id="start-btn" class="start-btn btn">Start</button>
             </div>
         </div>
-        <div class="controls">
-            <button id="start-btn" class="start-btn btn">Start</button>
-            <button id="next-btn" class="next-btn btn hide">Next</button>
+
+        <div class="container">
+            <div id="initials-input" class="hide">
+                <form>
+                    <label for="initials">Initals</label><br>
+                    <input type="text" id="initials" name="fname"><br>
+                    <input type="submit" value="Submit" id="submitBtn">
+                </form>
+            </div>
         </div>
-        <div id="initials-input" class="hide">
-            <form>
-                <label for="initials">Initals</label><br>
-                <input type="text" id="initials" name="fname"><br>
-                <input type="submit" value="Submit" id="submitBtn">
-            </form>
-        </div>
-        <div id="high-scores" class="hide">
+
+    </div>
+
+    <div class="container hide" id="high-scores">
+        <div>
             <h1>High Scores</h1>
             <p id="scores-list"></p>
-            <button class="btn">Restart</button>
-            <button class="btn">Clear High Scores</button>
+            <button class="btn" id="restart-btn">Restart</button>
+            <button class="btn" id="clear-btn">Clear High Scores</button>
         </div>
-    </div>
     </div>
 
     <script src="script.js"></script>

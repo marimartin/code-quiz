@@ -35,13 +35,13 @@ body {
     border-width: 2px;
 }
 
-.btn.correct {
+/* .btn.correct {
    background-color: green;
 }
 
 .btn.wrong {
     background-color: red;
-}
+} */
 
 .start-btn, .next-btn {
     font-size: 1.5rem;
