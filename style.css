@@ -15,6 +15,7 @@ body {
     box-shadow: 0 0 10px 2px;
 }
 
+/* Buttons */
 .btn-grid {
     display: grid;
     gap: 10px;
@@ -35,14 +36,6 @@ body {
     border-width: 2px;
 }
 
-/* .btn.correct {
-   background-color: green;
-}
-
-.btn.wrong {
-    background-color: red;
-} */
-
 .start-btn, .next-btn {
     font-size: 1.5rem;
     font-weight: bold;
@@ -55,6 +48,7 @@ body {
     align-items: center;
 }
 
+/* hide class */
 .hide {
     display: none;
 }
@@ -65,7 +59,6 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
   }
   
   li {
@@ -81,15 +74,15 @@ ul {
   }
   
   li a:hover:not(.active) {
-    background-color: #111;
+    background-color: grey;
   }
   
   .active {
-    background-color: black;
+    background-color: grey;
   }
 
   #timer {
-      color: white;
+      color: black;
       padding-right: 20px;
       padding-top: 14px;
   }

@@ -17,6 +17,7 @@ const timerEl = document.getElementById("timer")
 const highScoreHeaderEl = document.getElementById("high-scores-header")
 const notScoresEl = document.getElementById("not-scores")
 const highScoresEl = document.getElementById('high-scores')
+const savedScores = document.getElementsById('scores-list')
 
 
 let randomQuestions, currentQuestionIndex
@@ -76,6 +77,8 @@ submitButton.addEventListener('click', function (event) {
     ]
     initialsArray.push(scoreArray)
     localStorage.setItem("initials", JSON.stringify(initialsArray))
+    initialsInputEl.classList.add('hide')
+    highScoresEl.className.remove('hide')
 })
 
 function submitScore() {
